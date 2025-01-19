@@ -13,9 +13,6 @@ const SearchClient: React.FC<{ fruit: string, ListProductsQuery: ListData }> = (
     const [filterValue, setFilterValue] = useState<string>(fruit)
     const showArrows = useWindowResize(768, true)
     const Image = showArrows ? Mobile : Logo
-    // if (typeof window !== 'undefined') {
-    //     document.title = 'Mercado fruit | Início'
-    // }
 
     useEffect(() => {
         if (fruit) {

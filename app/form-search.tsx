@@ -28,9 +28,7 @@ const FormSearch: React.FC = () => {
   };
 
   return (
-    <>
-      <Input className="w-2/4 h-14 rounded-full" placeholder="Digite aqui..." onKeyDown={handleKeyDown} />
-    </>
+    <Input className="w-2/4 h-14 rounded-full" placeholder="Digite aqui..." onKeyDown={handleKeyDown} />
   );
 };
 

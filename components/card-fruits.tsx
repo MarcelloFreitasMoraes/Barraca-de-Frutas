@@ -2,26 +2,18 @@ import React from 'react';
 import { Card } from './ui/card';
 import Image from "next/image";
 import { ListData } from '@/services/get-products';
-import { Button } from './ui/button';
+import ButtonCardFruits from '@/app/button-card';
 
 interface CardFruitsProps {
   data: ListData[] | Record<string, ListData[]>
 }
 
 const CardFruits: React.FC<CardFruitsProps> = ({ data }) => {
-  const isLogged =
-    typeof localStorage !== 'undefined'
-      ? localStorage.getItem('Logged')
-      : null
-
   const isObjectWithEntries = data && typeof data === 'object' && !Array.isArray(data);
 
   const products = isObjectWithEntries
     ? Object.values(data).flat()
     : (data as ListData[]);
-
-  console.log(isLogged, 'card');
-
 
   return (
     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-screen-xl">
@@ -54,11 +46,7 @@ const CardFruits: React.FC<CardFruitsProps> = ({ data }) => {
                 }) ?? "0,00"}
               </p>
             </div>
-            {isLogged ? (
-              <Button onClick={() => { }}>Adicionar ao Carrinho</Button>
-            ) : (
-              <Button disabled>Logue para comprar</Button>
-            )}
+            <ButtonCardFruits />
           </Card>
         ))}
     </div>

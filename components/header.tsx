@@ -5,11 +5,14 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { toast } from "@/hooks/use-toast";
+import { useAuthStore } from "@/auth/authStore";
+import Image from "next/image";
+import { CircleUserRound } from "lucide-react";
 
 const navItems = [
   {
-    title: "Nav 1",
-    href: "/nav1",
+    title: "Início",
+    href: "/",
   },
   {
     title: "Nav 2",
@@ -22,8 +25,7 @@ const navItems = [
 ];
 
 const Header: React.FC = () => {
-  const [isLogged, setIsLogged] = useState<string | null>()
-  const [showModal, setShowModal] = useState<boolean>(false)
+  const { isLogged, setIsLogged } = useAuthStore()
   const [user, setUser] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -34,12 +36,6 @@ const Header: React.FC = () => {
     return setIsLogged(localStorage.getItem('Logged'))
   }, [])
 
-  const openModal = () => {
-    setShowModal(true)
-  }
-  const closedModal = () => {
-    setShowModal(false)
-  }
 
   const loggedUser = 'teste@teste.com.br'
   const nameUser = 'Marcelo Moraes'
@@ -69,17 +65,24 @@ const Header: React.FC = () => {
   }
 
   return (
-    <div className="flex items-center gap-2 justify-between bg-red-400 w-full h-24 p-8">
-      <div>LOGO</div>
+    <div className="flex items-center gap-2 justify-between bg-red-700 w-full h-24 p-8">
+      <div>
+        <Image
+          src={"/logo.png"}
+          alt={"logo"}
+          width={200}
+          height={200}
+          className="w-full h-full object-fill"
+        /></div>
       <div className="flex gap-2">
         {navItems.map((item, index) => (
-          <Link key={index} href={item.href} className="text-xl">
+          <Link key={index} href={item.href} className="text-xl text-white font-bold">
             {item.title}
           </Link>
         ))}
       </div>
       <Dialog>
-        <DialogTrigger className="cursor-pointer">Open</DialogTrigger>
+        <DialogTrigger className="cursor-pointer"> <CircleUserRound color="white" size={30} /></DialogTrigger>
         <DialogContent>
           {isLogged ? (
             <DialogHeader>
