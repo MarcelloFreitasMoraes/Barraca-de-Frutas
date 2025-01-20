@@ -8,7 +8,8 @@ interface CardFruitsProps {
   data: ListData[] | Record<string, ListData[]>
 }
 
-const CardFruits: React.FC<CardFruitsProps> = ({ data }) => {
+const CardFruits: React.FC<CardFruitsProps> = async ({ data }) => {
+
   const isObjectWithEntries = data && typeof data === 'object' && !Array.isArray(data);
 
   const products = isObjectWithEntries
@@ -16,7 +17,7 @@ const CardFruits: React.FC<CardFruitsProps> = ({ data }) => {
     : (data as ListData[]);
 
   return (
-    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-auto max-w-screen-xl">
+    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mx-auto max-w-screen-2xl">
       {products &&
         products.map((product: ListData, index: number) => (
           <Card
@@ -46,7 +47,7 @@ const CardFruits: React.FC<CardFruitsProps> = ({ data }) => {
                 }) ?? "0,00"}
               </p>
             </div>
-            <ButtonCardFruits />
+            <ButtonCardFruits product={product} />
           </Card>
         ))}
     </div>
