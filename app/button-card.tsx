@@ -17,7 +17,6 @@ const ButtonCardFruits: React.FC<ButtonCardFruitsProps> = ({ product }) => {
         try {
             const post = await addMovieToCart(item);
             if (post && post.success) {
-                console.log("Produto adicionado ao carrinho", post);
                 toast({
                     title: "Sucesso!",
                     description: "Produto adicionado ao carrinho!",
